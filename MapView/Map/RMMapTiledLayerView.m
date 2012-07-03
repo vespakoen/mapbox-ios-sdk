@@ -137,10 +137,40 @@
 
         UIGraphicsPushContext(context);
 
-        UIImage *tileImage = nil;
+        __block UIImage *tileImage = nil;
 
         if (zoom >= tileSource.minZoom && zoom <= tileSource.maxZoom)
+        {
+            if (mapView.loadAsynchronously)
+            {
+                int factor = mapView.prefetchTileRadius;
+                
+                for (int i = x - factor; i < x + factor; i++)
+                {
+                    for (int j = y - factor; j < y + factor; j++)
+                    {
+                        if (i == x && j == y)
+                            continue;
+                        
+                        if (i >= 0 && j >= 0)
+                        {
+                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                            {
+                                if (mapView.artificialLatency)
+                                    [NSThread sleepForTimeInterval:(mapView.artificialLatency / 1000)];
+                                
+                                [tileSource imageForTile:RMTileMake(i, j, zoom) inCache:[mapView tileCache] asynchronously:YES];
+                            });
+                        }
+                    }
+                }
+            }
+
+            if (mapView.artificialLatency)
+                [NSThread sleepForTimeInterval:(mapView.artificialLatency / 1000)];
+
             tileImage = [tileSource imageForTile:RMTileMake(x, y, zoom) inCache:[mapView tileCache]];
+        }
 
         if ( ! tileImage)
         {

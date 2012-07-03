@@ -31,10 +31,16 @@
 #define RMAbstractWebMapSourceDefaultRetryCount  3
 #define RMAbstractWebMapSourceDefaultWaitSeconds 15.0
 
+#define kRMMapScrollChangeNotification @"RMMapScrollChangeNotification"
+
 @interface RMAbstractWebMapSource : RMAbstractMercatorTileSource
 
 @property (nonatomic, assign) NSUInteger retryCount;
 @property (nonatomic, assign) NSTimeInterval waitSeconds;
+
+@property (nonatomic, assign) NSUInteger maxConcurrentOperationCount;
+@property (nonatomic, readonly, assign) NSUInteger executingOperationCount;
+@property (nonatomic, readonly, assign) NSUInteger totalOperationCount;
 
 - (NSURL *)URLForTile:(RMTile)tile;
 

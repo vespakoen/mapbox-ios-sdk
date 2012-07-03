@@ -180,6 +180,8 @@
 		DDC4BEEB152E3DE700089409 /* GRMustacheTemplateRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = DDC4BEE0152E3DE700089409 /* GRMustacheTemplateRepository.h */; };
 		DDC4BEEC152E3DE700089409 /* GRMustacheVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = DDC4BEE1152E3DE700089409 /* GRMustacheVersion.h */; };
 		DDC4BEF2152E3FAE00089409 /* RMInteractiveSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC4BED4152E3BD700089409 /* RMInteractiveSource.m */; };
+		DDDE642115A28E6B005F441F /* RMTileDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = DDDE641F15A28E6B005F441F /* RMTileDownloadOperation.h */; };
+		DDDE642215A28E6B005F441F /* RMTileDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDE642015A28E6B005F441F /* RMTileDownloadOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -369,6 +371,8 @@
 		DDC4BEE0152E3DE700089409 /* GRMustacheTemplateRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheTemplateRepository.h; sourceTree = "<group>"; };
 		DDC4BEE1152E3DE700089409 /* GRMustacheVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheVersion.h; sourceTree = "<group>"; };
 		DDC4BEE2152E3DE700089409 /* libGRMustache3-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache3-iOS.a"; path = "GRMustache/lib/libGRMustache3-iOS.a"; sourceTree = "<group>"; };
+		DDDE641F15A28E6B005F441F /* RMTileDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTileDownloadOperation.h; sourceTree = "<group>"; };
+		DDDE642015A28E6B005F441F /* RMTileDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTileDownloadOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -551,6 +555,8 @@
 				B83E64D90E80E73F001663B6 /* RMTileImage.m */,
 				160E535513FBDB47004F82F9 /* RMMapTiledLayerView.h */,
 				160E535613FBDB48004F82F9 /* RMMapTiledLayerView.m */,
+				DDDE641F15A28E6B005F441F /* RMTileDownloadOperation.h */,
+				DDDE642015A28E6B005F441F /* RMTileDownloadOperation.m */,
 				1609AF8C14068B09008344B7 /* RMMapOverlayView.h */,
 				1609AF8D14068B09008344B7 /* RMMapOverlayView.m */,
 				16F3581915864135003A3AD9 /* RMMapScrollView.h */,
@@ -842,6 +848,7 @@
 				16F98C961590CFF000FF90CE /* RMShape.h in Headers */,
 				16FBF07615936BF1004ECAD1 /* RMTileSourcesContainer.h in Headers */,
 				161E563A1594664E00B00BB6 /* RMOpenSeaMapLayer.h in Headers */,
+				DDDE642115A28E6B005F441F /* RMTileDownloadOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,6 +1074,7 @@
 				16F98C971590CFF000FF90CE /* RMShape.m in Sources */,
 				16FBF07715936BF1004ECAD1 /* RMTileSourcesContainer.m in Sources */,
 				161E563B1594664E00B00BB6 /* RMOpenSeaMapLayer.m in Sources */,
+				DDDE642215A28E6B005F441F /* RMTileDownloadOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

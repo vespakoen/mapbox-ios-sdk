@@ -105,6 +105,11 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) BOOL debugTiles;
 
+@property (nonatomic) BOOL loadAsynchronously;
+@property (nonatomic) NSUInteger prefetchTileRadius;
+@property (nonatomic) NSUInteger maxConcurrentOperationCount;
+@property (nonatomic) NSUInteger artificialLatency;
+
 #pragma mark - Initializers
 
 - (id)initWithFrame:(CGRect)frame andTilesource:(id <RMTileSource>)newTilesource;

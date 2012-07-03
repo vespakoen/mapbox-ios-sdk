@@ -176,6 +176,10 @@
 @synthesize userLocation, showsUserLocation, userTrackingMode;
 @synthesize missingTilesDepth = _missingTilesDepth;
 @synthesize debugTiles = _debugTiles;
+@synthesize loadAsynchronously;
+@synthesize prefetchTileRadius;
+@synthesize maxConcurrentOperationCount;
+@synthesize artificialLatency;
 
 #pragma mark -
 #pragma mark Initialization
@@ -1031,6 +1035,8 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRMMapScrollChangeNotification object:self];
+
     if (self.userTrackingMode != RMUserTrackingModeNone)
         self.userTrackingMode = RMUserTrackingModeNone;
 
@@ -1079,6 +1085,8 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRMMapScrollChangeNotification object:self];
+
     if (self.userTrackingMode != RMUserTrackingModeNone && scrollView.pinchGestureRecognizer.state == UIGestureRecognizerStateChanged)
         self.userTrackingMode = RMUserTrackingModeNone;
     
@@ -2578,6 +2586,19 @@
         
         [self.viewControllerPresentingAttribution presentModalViewController:attributionViewController animated:YES];
     }
+}
+
+#pragma mark -
+#pragma mark Benchmarking
+
+- (void)setMaxConcurrentOperationCount:(NSUInteger)count
+{
+    [(NSObject *)self.tileSource setValue:[NSNumber numberWithUnsignedInteger:count] forKey:@"maxConcurrentOperationCount"];
+}
+
+- (NSUInteger)maxConcurrentOperationCount
+{
+    return [[(NSObject *)self.tileSource valueForKey:@"maxConcurrentOperationCount"] intValue];
 }
 
 @end
