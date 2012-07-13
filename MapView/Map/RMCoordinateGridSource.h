@@ -1,5 +1,6 @@
 //
-//  RMMapLayer.m
+//  RMCoordinateGridSource.h
+//  MapView
 //
 // Copyright (c) 2008-2012, Route-Me Contributors
 // All rights reserved.
@@ -25,57 +26,28 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#import "RMMapLayer.h"
-#import "RMPixel.h"
+#import "RMAbstractMercatorTileSource.h"
+#import "RMProjection.h"
 
-@implementation RMMapLayer
+typedef enum : short {
+    GridModeGeographic, // 47˚ 33'
+    GridModeGeographicDecimal, // 47.56
+    GridModeUTM // 32T 5910
+} CoordinateGridMode;
 
-@synthesize annotation;
-@synthesize projectedLocation;
-@synthesize enableDragging;
-@synthesize userInfo;
+// UTM grid is missing for now
 
-- (id)init
-{
-	if (!(self = [super init]))
-		return nil;
+@interface RMCoordinateGridSource : RMAbstractMercatorTileSource
 
-    self.annotation = nil;
-    self.enableDragging = NO;
+@property (nonatomic, assign) CoordinateGridMode gridMode;
 
-	return self;
-}
+@property (nonatomic, retain) UIColor *gridColor;
+@property (nonatomic, assign) CGFloat  gridLineWidth;
+@property (nonatomic, assign) NSUInteger gridLabelInterval;
 
-- (id)initWithLayer:(id)layer
-{
-    if (!(self = [super initWithLayer:layer]))
-        return nil;
-
-    self.annotation = nil;
-    self.userInfo = nil;
-
-    return self;
-}
-
-- (void)dealloc
-{
-    self.annotation = nil;
-    self.userInfo = nil;
-    [super dealloc];
-}
-
-- (void)setPosition:(CGPoint)position animated:(BOOL)animated
-{
-    [self setPosition:position];
-}
-
-/// return nil for certain animation keys to block core animation
-//- (id <CAAction>)actionForKey:(NSString *)key
-//{
-//    if ([key isEqualToString:@"position"] || [key isEqualToString:@"bounds"])
-//        return nil;
-//    else
-//        return [super actionForKey:key];
-//}
+@property (nonatomic, retain) UIColor *minorLabelColor;
+@property (nonatomic, retain) UIFont  *minorLabelFont;
+@property (nonatomic, retain) UIColor *majorLabelColor;
+@property (nonatomic, retain) UIFont  *majorLabelFont;
 
 @end

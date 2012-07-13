@@ -1,7 +1,7 @@
 //
 //  RMMarker.m
 //
-// Copyright (c) 2008-2009, Route-Me Contributors
+// Copyright (c) 2008-2012, Route-Me Contributors
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -131,10 +131,13 @@
 
 - (id)initWithMapBoxMarkerImage:(NSString *)symbolName tintColorHex:(NSString *)colorHex sizeString:(NSString *)sizeString
 {
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://a.tiles.mapbox.com/v3/marker/pin-%@%@%@.png", 
+    BOOL useRetina = ([[UIScreen mainScreen] scale] > 1.0);
+    
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://a.tiles.mapbox.com/v3/marker/pin-%@%@%@%@.png",
                                                (sizeString ? [sizeString substringToIndex:1] : @"m"), 
                                                (symbolName ? [@"-" stringByAppendingString:symbolName] : nil), 
-                                               (colorHex   ? [@"+" stringByAppendingString:[colorHex stringByReplacingOccurrencesOfString:@"#" withString:@""]] : nil)]];
+                                               (colorHex   ? [@"+" stringByAppendingString:[colorHex stringByReplacingOccurrencesOfString:@"#" withString:@""]] : nil),
+                                               (useRetina  ? @"@2x" : @"")]];
     
     UIImage *image;
     
@@ -188,6 +191,23 @@
         label = [aView retain];
         [self addSublayer:[label layer]];
     }
+}
+
+- (void)setTextBackgroundColor:(UIColor *)newTextBackgroundColor
+{
+    [textBackgroundColor autorelease];
+    textBackgroundColor = [newTextBackgroundColor retain];
+
+    self.label.backgroundColor = textBackgroundColor;
+}
+
+- (void)setTextForegroundColor:(UIColor *)newTextForegroundColor
+{
+    [textForegroundColor autorelease];
+    textForegroundColor = [newTextForegroundColor retain];
+
+    if ([self.label respondsToSelector:@selector(setTextColor:)])
+        ((UILabel *)self.label).textColor = textForegroundColor;
 }
 
 - (void)changeLabelUsingText:(NSString *)text

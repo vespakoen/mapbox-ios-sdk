@@ -237,7 +237,7 @@
         
         staticCount--;
     }
-    
+
     if (image)
         [tileCache addImage:image forTile:tile withCacheKey:[self uniqueTilecacheKey]];
 
