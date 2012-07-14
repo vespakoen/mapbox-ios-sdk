@@ -105,7 +105,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) BOOL debugTiles;
 
-@property (nonatomic) BOOL loadAsynchronously;
+@property (nonatomic) BOOL loadAsynchronouslyPrefetch;
+@property (nonatomic) BOOL loadAsynchronouslyRedraw;
 @property (nonatomic) NSUInteger prefetchTileRadius;
 @property (nonatomic) NSUInteger maxConcurrentOperationCount;
 @property (nonatomic) NSUInteger artificialLatency;

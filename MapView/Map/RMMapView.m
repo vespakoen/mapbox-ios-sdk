@@ -179,7 +179,7 @@
 @synthesize userLocation, showsUserLocation, userTrackingMode;
 @synthesize missingTilesDepth = _missingTilesDepth;
 @synthesize debugTiles = _debugTiles;
-@synthesize loadAsynchronously;
+@synthesize loadAsynchronouslyPrefetch;
 @synthesize prefetchTileRadius;
 @synthesize maxConcurrentOperationCount;
 @synthesize artificialLatency;

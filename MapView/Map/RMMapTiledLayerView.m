@@ -113,11 +113,11 @@
 
         UIGraphicsPushContext(context);
 
-        __block UIImage *tileImage = nil;
+        UIImage *tileImage = nil;
 
         if (zoom >= _tileSource.minZoom && zoom <= _tileSource.maxZoom)
         {
-            if (_mapView.loadAsynchronously)
+            if (_mapView.loadAsynchronouslyPrefetch)
             {
                 int factor = _mapView.prefetchTileRadius;
                 
@@ -141,11 +141,34 @@
                     }
                 }
             }
+            else if (_mapView.loadAsynchronouslyRedraw)
+            {
+                tileImage = [[_mapView tileCache] cachedImage:RMTileMake(x, y, zoom) withCacheKey:[_tileSource uniqueTilecacheKey]];
 
-            if (_mapView.artificialLatency)
-                [NSThread sleepForTimeInterval:(_mapView.artificialLatency / 1000)];
+                if ( ! tileImage)
+                {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
+                    {
+                        if (_mapView.artificialLatency)
+                            [NSThread sleepForTimeInterval:(_mapView.artificialLatency / 1000)];
 
-            tileImage = [_tileSource imageForTile:RMTileMake(x, y, zoom) inCache:[_mapView tileCache]];
+                        if ([_tileSource imageForTile:RMTileMake(x, y, zoom) inCache:[_mapView tileCache]])
+                        {
+                            dispatch_async(dispatch_get_main_queue(), ^(void)
+                            {
+                                [self.layer setNeedsDisplay];
+                            });
+                        }
+                    });
+                }
+            }
+            else
+            {
+                if (_mapView.artificialLatency)
+                    [NSThread sleepForTimeInterval:(_mapView.artificialLatency / 1000)];
+
+                tileImage = [_tileSource imageForTile:RMTileMake(x, y, zoom) inCache:[_mapView tileCache]];
+            }
         }
 
         if ( ! tileImage)
