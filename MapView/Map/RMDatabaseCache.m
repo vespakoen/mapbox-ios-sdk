@@ -135,7 +135,9 @@
 
     _tileCount = [self countTiles];
 
-	return self;	
+    [[NSNotificationCenter defaultCenter] postNotificationName:RMDatabaseCacheTileCountNotification object:[NSNumber numberWithUnsignedInteger:_tileCount]];
+
+	return self;
 }
 
 - (id)initUsingCacheDir:(BOOL)useCacheDir
@@ -282,6 +284,8 @@
                 RMLog(@"Error occured adding data");
             else
                 _tileCount++;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:RMDatabaseCacheTileCountNotification object:[NSNumber numberWithUnsignedInteger:_tileCount]];
         }];
 	}
 }
@@ -335,6 +339,8 @@
     [_writeQueueLock unlock];
 
     _tileCount = [self countTiles];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:RMDatabaseCacheTileCountNotification object:[NSNumber numberWithUnsignedInteger:_tileCount]];
 }
 
 - (void)removeAllCachedImages 
@@ -357,6 +363,8 @@
         [_writeQueueLock unlock];
 
         _tileCount = [self countTiles];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:RMDatabaseCacheTileCountNotification object:[NSNumber numberWithUnsignedInteger:_tileCount]];
     }];
 }
 

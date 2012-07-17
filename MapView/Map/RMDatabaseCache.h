@@ -28,6 +28,8 @@
 #import <UIKit/UIKit.h>
 #import "RMTileCache.h"
 
+static NSString *const RMDatabaseCacheTileCountNotification = @"RMDatabaseCacheTileCountNotification";
+
 @interface RMDatabaseCache : NSObject <RMTileCache>
 
 @property (nonatomic, retain) NSString *databasePath;
