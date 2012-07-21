@@ -56,14 +56,15 @@ Then, update the submodules:
 
       git submodule update --init
 
-Example app showing usage:
+Some example apps showing usage of the SDK:
 
-      https://github.com/mapbox/mapbox-ios-example
+ * [MapBox iOS Example](https://github.com/mapbox/mapbox-ios-example) - online, offline, and interactive tile sources
+ * [MapBox Me](https://github.com/mapbox/mapbox-me) - user location services and terrain toggling
+ * [Weekend Picks](https://github.com/mapbox/weekend-picks-template-ios) - markers and data
 
 More documentation is available: 
 
       http://mapbox.com/mobile/docs/sdk
-
 
 There are two subdirectories - MapView and Proj4. Proj4 is a support library used to do map projections. The MapView project contains only the Route-Me map library. 
 
