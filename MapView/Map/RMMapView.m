@@ -180,6 +180,7 @@
 @synthesize missingTilesDepth = _missingTilesDepth;
 @synthesize debugTiles = _debugTiles;
 @synthesize loadAsynchronouslyPrefetch;
+@synthesize loadAsynchronouslyRedraw;
 @synthesize prefetchTileRadius;
 @synthesize maxConcurrentOperationCount;
 @synthesize artificialLatency;
