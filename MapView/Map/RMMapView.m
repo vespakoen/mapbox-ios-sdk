@@ -180,6 +180,7 @@
 @synthesize missingTilesDepth = _missingTilesDepth;
 @synthesize debugTiles = _debugTiles;
 @synthesize loadAsynchronouslyPrefetch;
+@synthesize loadAsynchronouslyRedraw;
 @synthesize prefetchTileRadius;
 @synthesize maxConcurrentOperationCount;
 @synthesize artificialLatency;
@@ -240,6 +241,9 @@
 
     [self setTileSource:newTilesource];
     [self setCenterCoordinate:initialCenterCoordinate animated:NO];
+
+    _decelerationMode = RMMapDecelerationFast;
+    _boundingMask = RMMapMinHeightBound;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleMemoryWarningNotification:)
