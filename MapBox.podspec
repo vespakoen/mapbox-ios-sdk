@@ -72,9 +72,7 @@ Pod::Spec.new do |m|
 
   m.libraries = 'Proj4', 'sqlite3', 'z'
 
-  m.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC', 'LIBRARY_SEARCH_PATHS' => '"${PODS_ROOT}/MapBox/Proj4"' }
-
-  m.preserve_paths = 'Proj4/libProj4.a', 'MapView/MapView.xcodeproj', 'MapView/Map/Resources'
+  spec.ios.vendored_library = 'Proj4/libProj4.a'
 
   m.dependency 'FMDB', '2.0'
   m.dependency 'GRMustache', '5.4.3'
