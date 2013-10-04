@@ -70,7 +70,7 @@ Pod::Spec.new do |m|
 
   m.frameworks = 'CoreGraphics', 'CoreLocation', 'Foundation', 'QuartzCore', 'UIKit'
 
-  m.libraries = 'Proj4', 'sqlite3', 'z'
+  #m.libraries = 'Proj4', 'sqlite3', 'z'
 
   m.ios.vendored_library = 'Proj4/libProj4.a'
 
