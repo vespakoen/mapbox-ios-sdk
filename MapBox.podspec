@@ -72,7 +72,7 @@ Pod::Spec.new do |m|
 
   m.libraries = 'Proj4', 'sqlite3', 'z'
 
-  spec.ios.vendored_library = 'Proj4/libProj4.a'
+  m.ios.vendored_library = 'Proj4/libProj4.a'
 
   m.dependency 'FMDB', '2.0'
   m.dependency 'GRMustache', '5.4.3'
