@@ -72,8 +72,6 @@ Pod::Spec.new do |m|
 
   m.ios.vendored_library = 'Proj4/libProj4.a'
 
-  m.libraries = 'sqlite3', 'z'
-
   m.dependency 'FMDB', '2.0'
   m.dependency 'GRMustache', '5.4.3'
   m.dependency 'SMCalloutView', '1.1'
